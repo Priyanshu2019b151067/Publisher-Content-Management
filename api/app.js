@@ -8,7 +8,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const userRouter = require('./routes/users');
-
+const productRouter = require('./routes/products')
+const cartRouter = require('./routes/cart');
 // INTIAL DATA
 
 // Configurations
@@ -48,6 +49,8 @@ const upload = multer({storage});
 
 // routes;
 app.use('/auth',userRouter);
+app.use('/product',productRouter);
+app.use('/cart',cartRouter);
 // app.use('/posts',postRouter);
 
 // DATA BASE SETUP
