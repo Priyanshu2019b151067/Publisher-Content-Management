@@ -7,12 +7,8 @@ const multer = require('multer');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
-const {register} = require('./controllers/auth')
-const authRouter = require('./routes/auth');
 const userRouter = require('./routes/users');
-const postRouter = require('./routes/posts');
-const { verifyToken } = require('./middleware/auth');
-const { createPost} = require('./controllers/posts')
+
 // INTIAL DATA
 
 // Configurations
@@ -51,8 +47,8 @@ const upload = multer({storage});
 
 
 // routes;
-app.use('/users',userRouter);
-app.use('/posts',postRouter);
+app.use('/auth',userRouter);
+// app.use('/posts',postRouter);
 
 // DATA BASE SETUP
 const PORT = process.env.PORT || 6000
@@ -61,8 +57,6 @@ mongoose.connect(process.env.MONGO_URI)
     app.listen(PORT,()=>{
         console.log(`Server Port :${PORT}`);
     })
-    // User.insertMany(users);
-    // Post.insertMany(posts);
 }).catch((error)=>{
     console.log(`${error} did not connect`);
 })
